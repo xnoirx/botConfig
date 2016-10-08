@@ -3,8 +3,14 @@
   "auth_service": "google",
   "username": "YOUR_USERNAME",
   "password": "YOUR_PASSWORD",
-  "location": "52.39037297896968,4.828920364379883",
+  "location": "",
+  "favorite_locations":[
+      {"name": "Default", "coords": "52.39037297896968,4.828920364379883"}
+  ],
   "gmapkey": "GOOGLE_MAPS_API_KEY",
+  "encrypt_location": "",
+  "telegram_token": "",
+  "discord_token": "",
   "tasks": [
     {
       "type": "HandleSoftBan"

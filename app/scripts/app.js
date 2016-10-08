@@ -19,6 +19,10 @@ angular
   ]).config(function($routeProvider, $locationProvider) {
   $routeProvider
     .when('/', {
+      templateUrl: './views/auth_config.html',
+      controller: 'AuthCtrl as vm'
+    })
+    .when('/general-config', {
       templateUrl: './views/general_config.html',
       controller: 'GeneralCtrl'
     })

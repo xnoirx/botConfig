@@ -1,38 +1,7 @@
 <div class="row">
-    <div class="col-xs-12 col-md-6">
+    <div class="col-xs-12 col-md-12">
         <h4>General info</h4>
         <table class="table-responsive table">
-            <tr>
-                <td>Auth type</td>
-                <td>
-                    <select ng-model="config.auth_service">
-                        <option value="ptc">PTC</option>
-                        <option value="google">Google</option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td>Username</td>
-                <td>
-                    <input type="text" ng-model="config.username" class="form-control">
-                </td>
-            </tr>
-            <tr>
-                <td>Password</td>
-                <td>
-                    <input type="password" ng-model="config.password" class="form-control">
-                </td>
-            </tr>
-            <tr>
-                <td>Google Maps api key</td>
-                <td>
-                    <input type="text" ng-model="config.gmapkey" class="form-control">
-                    <small>Get one <a
-                            href="https://console.developers.google.com/flows/enableapi?apiid=maps_backend,geocoding_backend,directions_backend,distance_matrix_backend,elevation_backend,places_backend&keyType=CLIENT_SIDE&reusekey=true"
-                            target="_blank">here</a></small>
-                </td>
-            </tr>
-
             <tr>
                 <td>Max steps</td>
                 <td>
@@ -84,15 +53,5 @@
                 </td>
             </tr>
         </table>
-    </div>
-    <div class="col-xs-12 col-md-6">
-        <h4>Select start location</h4>
-        Click on the map to set your start location
-        <ng-map zoom="13" center="{{ config.location }}" on-click="placeMarker(event)">
-            <marker position="{{ config.location }}" draggable="true" on-dragend="setCoords(event)" animation="Animation.DROP"></marker>
-        </ng-map>
-        <div>
-            Current start location: {{config.location}}
-        </div>
     </div>
 </div>

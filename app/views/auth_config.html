@@ -1,0 +1,125 @@
+<div class="row">
+  <div class="col-xs-12 col-md-6">
+    <h4>Auth info</h4>
+    <table class="table table-responsive">
+      <tr>
+        <td>Auth type</td>
+        <td>
+          <select ng-model="config.auth_service">
+            <option value="ptc">PTC</option>
+            <option value="google">Google</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>Username</td>
+        <td>
+          <input type="text" class="form-control" ng-model="config.username">
+        </td>
+      </tr>
+      <tr>
+        <td>Password</td>
+        <td>
+          <input type="password" class="form-control" ng-model="config.password">
+        </td>
+      </tr>
+      <tr>
+        <td>Google Maps api key</td>
+        <td>
+          <input type="text" class="form-control" ng-model="config.gmapkey">
+          <small>
+            Get one
+            <a href="https://console.developers.google.com/flows/enableapi?apiid=maps_backend,geocoding_backend,directions_backend,distance_matrix_backend,elevation_backend,places_backend&keyType=CLIENT_SIDE&reusekey=true"
+               target="_blank">
+              here
+            </a>
+          </small>
+        </td>
+      </tr>
+      <tr>
+        <td>Current start location</td>
+        <td>
+          <input type="text"
+                 class="form-control"
+                 disabled
+                 ng-model="config.location">
+        </td>
+      </tr>
+      <tr>
+        <td>Encrypt location</td>
+        <td>
+          <input type="text"
+                 class="form-control"
+                 ng-model="config.encrypt_location">
+        </td>
+      </tr>
+      <tr>
+        <td>Telegram Token</td>
+        <td>
+          <input type="text"
+                 class="form-control"
+                 ng-model="config.telegram_token">
+        </td>
+      </tr>
+      <tr>
+        <td>Discord Token</td>
+        <td>
+          <input type="text"
+                 class="form-control"
+                 ng-model="config.discord_token">
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="col-xs-12 col-md-6">
+    <h4>
+      Favorite locations
+      <small>
+        <a class="btn" ng-click="vm.addLocation()">
+          <span class="glyphicon glyphicon-plus-sign"></span> Add location
+        </a>
+      </small>
+    </h4>
+    <p>
+      Click on the map to set your location
+    </p>
+    <ng-map zoom="13"
+            center="{{ vm.mapLocation }}"
+            on-click="vm.updateActiveLocationCoords(event)">
+      <marker position="{{ vm.mapLocation }}"
+              draggable="true"
+              on-dragend="vm.updateActiveLocationCoords(event)"
+              animation="Animation.DROP"></marker>
+    </ng-map>
+    <table class="table table-responsive table-striped">
+      <thead>
+        <td>Active</td>
+        <td>Name</td>
+        <td>Location</td>
+        <td></td>
+      </thead>
+      <tr ng-repeat="location in config.favorite_locations">
+        <td>
+          <input type="checkbox"
+                 ng-click="vm.setActiveLocation($index)"
+                 ng-checked="$index === vm.activeLocation">
+        </td>
+        <td>
+          <input type="text"
+                 class="form-control"
+                 ng-model="location.name"
+                 ng-change="vm.updateActiveLocationName($index)">
+        </td>
+        <td>
+          <input type="text"
+                 class="form-control"
+                 ng-model="location.coords"
+                 ng-change="vm.updateActiveLocationCoords($index)">
+        </td>
+        <td>
+          <span class="glyphicon glyphicon-minus-sign"
+                ng-click="vm.removeLocation($index)"></span>
+      </tr>
+    </table>
+  </div>
+</div>
